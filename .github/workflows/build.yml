@@ -33,7 +33,6 @@ jobs:
         push: false
         labels: ${{ steps.meta.outputs.labels }}
         tags: |
-          type=ref,event=branch
           type=ref,event=tag
           type=schedule,pattern=nightly
           type=semver,pattern={{major}}.{{minor}}.{{patch}}
