@@ -31,7 +31,6 @@ jobs:
       with:
         context: .
         push: false
-        tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         tags: |
           type=ref,event=branch
