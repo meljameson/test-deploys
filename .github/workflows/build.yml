@@ -24,14 +24,12 @@ jobs:
       uses: docker/metadata-action@v5
       with:
         images: test-deploy
+        # Trigger on merge to main, nightly, PR to main, and manual trigger
         tags: |
           type=ref,event=branch
           type=ref,event=tag
           type=schedule,pattern=nightly
           type=semver,pattern={{major}}.{{minor}}.{{patch}}
-
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag test-deploys:$(date +%s)
 
     - name: Build and push
       uses: docker/build-push-action@v5
