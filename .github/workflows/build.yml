@@ -21,7 +21,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: meljameson/test-deploy
+        images: test
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag test-deploys:$(date +%s)
@@ -34,6 +34,6 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
         tags: |
           type=ref,event=branch
-          type=ref,event=pr
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
+          type=ref,event=tag
+          type=schedule,pattern=nightly
+          type=semver,pattern={{major}}.{{minor}}.{{patch}}
