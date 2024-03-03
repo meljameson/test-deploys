@@ -40,6 +40,7 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
 
     - name: Conventional Changelog Action
+      if: ${{ !github.event.pull_request }}
       id: changelog
       uses: TriPSs/conventional-changelog-action@v5
       with:
@@ -47,6 +48,7 @@ jobs:
         output-file: "false"
 
     - name: Create Release
+      if: ${{ !github.event.pull_request }}
       uses: actions/create-release@v1
       if: ${{ steps.changelog.outputs.skipped == 'false' }}
       env:
