@@ -21,7 +21,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: test-deploy
+        images: meljameson/test-deploy
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag test-deploys:$(date +%s)
